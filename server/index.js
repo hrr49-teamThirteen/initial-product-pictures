@@ -14,10 +14,11 @@ app.listen(port, function(){
 
 app.use(express.static('client/dist'));
 
-app.get('/api/initialview', async function(){
+app.get('/api/initialview', async function(req, res){
   try{
-    let results = await models.getAll();
-    res.status(200).json(results);
+    let productResults = await models.getAllProducts();
+    //let photoResults = await models.getAllPhotos();
+    res.status(200).json(productResults);
   } catch(err) {
     res.status(404).send(err.message);
   }
