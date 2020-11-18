@@ -1,8 +1,9 @@
 import React from 'react';
+import StyledComponents from '../styledComponents/styles.jsx';
 
 const Title = (props) => (
   <div>
-    <h1>Keurig K-Classic Single-Serve K-Cup Pod Coffee Maker - K50</h1>
+    <StyledComponents.Title>Keurig K-Classic Single-Serve K-Cup Pod Coffee Maker - K50</StyledComponents.Title>
   </div>
 );
 

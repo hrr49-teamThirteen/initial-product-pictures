@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Style from './styledComponents/styles.jsx';
 import Title from './components/title.jsx';
 import Price from './components/price.jsx';
 import ReviewScore from './components/reviewScore.jsx';
@@ -8,7 +9,7 @@ import QuantitySelector from './components/quantitySelector.jsx';
 import ColorSelector from './components/colorSelector.jsx';
 import PictureCarousel from './components/pictureCarousel.jsx';
 import PictureCarouselEntry from './components/pictureCarouselEntry.jsx';
-
+import ZoomableMainPic from './components/zoomableMainpic.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class App extends React.Component {
 
     };
   }
+
 
   // async componentDidMount() {
   //   await $.ajax({
@@ -28,20 +30,22 @@ class App extends React.Component {
     return (
       <div>
         <Title />
-        <Price />
-        <div>
-          <ReviewScore />
-          <span>
-            <Questions />
-            <QuantitySelector />
-          </span>
+        <Style.MainDiv>
           <div>
-            <ColorSelector />
-            <div>
-              <PictureCarousel />
-            </div>
+            <PictureCarousel />
           </div>
-        </div>
+          <div>
+            <ZoomableMainPic />
+          </div>
+          <div>
+            <Price />
+            <div>
+              <ReviewScore />
+            </div>
+            <QuantitySelector />
+            <ColorSelector />
+          </div>
+        </Style.MainDiv>
       </div>
     );
   }

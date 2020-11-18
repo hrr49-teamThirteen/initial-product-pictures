@@ -1,9 +1,10 @@
 import React from 'react';
+import StyledComponents from '../styledComponents/styles.jsx';
 
 const ReviewScore = (props) => (
-  <div>
-    <a>Review Score</a>
-  </div>
+  <StyledComponents.ReviewScore>
+    5 || 92 Questions
+  </StyledComponents.ReviewScore>
 );
 
 export default ReviewScore;

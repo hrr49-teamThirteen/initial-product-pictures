@@ -1,5 +1,6 @@
 import React from 'react';
 import PictureCarouselEntry from './pictureCarouselEntry.jsx';
+import Styled from '../styledComponents/styles.jsx';
 
 class PictureCarousel extends React.Component {
   constructor(props) {
@@ -10,10 +11,13 @@ class PictureCarousel extends React.Component {
   }
   render() {
     return (
-      <div>
+      <Styled.PictureLeft>
         <PictureCarouselEntry />
-      </div>
+        <PictureCarouselEntry />
+        <PictureCarouselEntry />
+      </Styled.PictureLeft>
     );
   }
 }
 export default PictureCarousel;
+

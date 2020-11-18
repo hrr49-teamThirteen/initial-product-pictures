@@ -10,7 +10,9 @@
   "scripts": {
     "server": "nodemon server/index.js",
     "build": "webpack -d --watch",
-    "seed": "node server/database/faker.js"
+    "seed": "node server/database/faker.js",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -20,12 +22,13 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "faker": "^5.1.0",
-    "jest": "^26.6.3",
     "jquery": "^3.5.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1",
+    "supertest": "^6.0.1",
     "webpack": "^4.44.2"
   },
   "devDependencies": {
@@ -34,6 +37,7 @@
     "@babel/preset-react": "^7.12.5",
     "babel-loader": "^8.2.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "jest": "^26.6.3",
     "webpack": "^4.44.2",
     "webpack-cli": "^4.2.0"
   }

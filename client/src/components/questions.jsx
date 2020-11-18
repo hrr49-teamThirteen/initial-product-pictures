@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Questions = (props) => (
-  <div>92 Questions</div>
+  <span>92 Questions</span>
 );
 
 export default Questions;

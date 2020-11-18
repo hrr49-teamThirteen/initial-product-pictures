@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Price = (props) => (
-  <div>
+  <div align='right'>
     <a>$79.99</a>
   </div>
 );

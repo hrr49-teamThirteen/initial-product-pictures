@@ -9,7 +9,7 @@ class QuantitySelector extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div align='right'>
         <select>QuantitySelector</select>
       </div>
     );

@@ -9,7 +9,7 @@ class ColorSeclector extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div align='right'>
         <button>Color 1</button>
         <button>Color 2</button>
       </div>
