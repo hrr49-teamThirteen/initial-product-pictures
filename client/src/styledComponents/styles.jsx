@@ -19,5 +19,20 @@ export default {
   PictureLeft:
   Style.div`
     align: left;
-  `
-  };
+  `,
+  Photosize:
+  Style.img`
+    height: 100px;
+    width: 100px;
+    `,
+  ColorSelectB:
+  Style.button`
+    background-color: black;
+    text: black;
+    `,
+  ColorSelectR:
+  Style.button`
+    background-color: red;
+    text: red;
+    `
+};

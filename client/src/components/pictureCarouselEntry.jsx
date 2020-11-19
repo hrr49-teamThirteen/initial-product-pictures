@@ -1,4 +1,5 @@
 import React from 'react';
+import Styled from '../styledComponents/styles.jsx';
 
 class PictureCarouselEntry extends React.Component {
   constructor(props) {
@@ -8,10 +9,21 @@ class PictureCarouselEntry extends React.Component {
     };
   }
 
+  isPhotoDefined() {
+    if (this.props.photo !== undefined) {
+      return (<img height='110px' width='110px' src={this.props.photo.photoURL} onClick={e => this.onPhotoClick(this.props.photo.photoURL)}/>);
+    }
+  }
+
+  onPhotoClick(photoURL) {
+    console.log('photoURL', photoURL)
+    this.props.setMainPhoto(photoURL);
+  }
+
   render() {
     return (
       <div>
-        <img src="https://images.ctfassets.net/yr4qj72ki4ky/5gltqdfqQSQj1K9DPVMYWf/8e1ca3d632a440be80270f4952a878d0/hrhq-avatar.png" />
+        {this.isPhotoDefined()}
       </div>
     );
   }

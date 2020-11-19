@@ -10,7 +10,7 @@ let models = require('./database/models.js');
 
 app.use(express.static('client/dist'));
 
-app.get('/api/initialview', async function(req, res) {
+app.get('/api/products', async function(req, res) {
   try {
     let productResults = await models.getAllProducts();
     //let photoResults = await models.getAllPhotos();
@@ -20,6 +20,32 @@ app.get('/api/initialview', async function(req, res) {
   }
 });
 
+app.get('/api/photos', async function (req, res) {
+  try {
+    let photoResults = await models.getAllPhotos();
+    res.status(200).json(photoResults);
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
+});
+
+app.get('/api/photosBlack', async function (req, res) {
+  try {
+    let blackResults = await models.getAllBlackPhotos();
+    res.status(200).json(blackResults);
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
+});
+
+app.get('/api/photosRed', async function (req, res) {
+  try {
+    let redResults = await models.getAllRedPhotos();
+    res.status(200).json(redResults);
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
+});
 //app.get('test')
 
-module.exports = app;
+module.exports = { app };

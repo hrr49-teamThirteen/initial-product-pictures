@@ -10,21 +10,63 @@ import ColorSelector from './components/colorSelector.jsx';
 import PictureCarousel from './components/pictureCarousel.jsx';
 import PictureCarouselEntry from './components/pictureCarouselEntry.jsx';
 import ZoomableMainPic from './components/zoomableMainpic.jsx';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      products: [],
+      photos: [],
+      photosRed: [],
+      photosBlack: [],
+      mainPhoto: undefined,
+      photoColor: 'black',
+      quantity: 1
     };
   }
 
+  componentDidMount() {
+    $.ajax({
+      url: '/api/products',
+      type: 'GET',
+      success: (products) => {
+        //console.log('products', products);
+        this.setState({products: products});
+      }
+    });
+    $.ajax({
+      url: '/api/photos',
+      type: 'GET',
+      success: (photos) => {
+        console.log('Photos', photos);
+        let colorRed = [];
+        let colorBlack = [];
+        for (let photo of photos) {
+          if (photo.colorID === 1) {
+            colorRed.push(photo);
+          } else {
+            colorBlack.push(photo);
+          }
+        }
+        console.log('Colorred', colorRed);
+        console.log('ColorBlack', colorBlack);
+        this.setState({photos: photos, photosRed: colorRed, photosBlack: colorBlack});
+      }
+    });
+  }
 
-  // async componentDidMount() {
-  //   await $.ajax({
+  setPhotoColor(photoColor) {
+    this.setState({photoColor: photoColor});
+  }
 
-  //   })
-  // }
+  setMainPhoto(mainPhoto) {
+    this.setState({mainPhoto: mainPhoto});
+  }
+
+  setQuantity(quantity) {
+    this.setState({quantity: quantity});
+  }
 
   render() {
     return (
@@ -32,18 +74,18 @@ class App extends React.Component {
         <Title />
         <Style.MainDiv>
           <div>
-            <PictureCarousel />
+            <PictureCarousel setMainPhoto={this.setMainPhoto.bind(this)} photos={this.state.photoColor === 'black' ? this.state.photosBlack : this.state.photosRed}/>
           </div>
           <div>
-            <ZoomableMainPic />
+            <ZoomableMainPic mainPhoto={this.state.mainPhoto} />
           </div>
           <div>
             <Price />
             <div>
               <ReviewScore />
             </div>
-            <QuantitySelector />
-            <ColorSelector />
+            <QuantitySelector setQuantity={this.setQuantity.bind(this)}/>
+            <ColorSelector setColor={this.setPhotoColor.bind(this)}/>
           </div>
         </Style.MainDiv>
       </div>

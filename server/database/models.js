@@ -52,6 +52,32 @@ module.exports = {
         }
       });
     });
+  },
+  getAllRedPhotos: function() {
+    return new Promise((resolve, reject) => {
+      db.connection.query('SELECT * FROM photos WHERE colorID=1', (err, results, fields) => {
+        if (err) {
+          console.log('Error grabbing all Red Photos');
+          reject(err);
+        } else {
+          console.log('Successfully got all Red Photos');
+          resolve(results);
+        }
+      });
+    });
+  },
+  getAllBlackPhotos: function() {
+    return new Promise((resolve, reject) => {
+      db.connection.query('SELECT * FROM photos WHERE colorID=0', (err, results, fields) => {
+        if (err) {
+          console.log('Error grabbing all Red Photos');
+          reject(err);
+        } else {
+          console.log('Successfully got all Red Photos');
+          resolve(results);
+        }
+      });
+    });
   }
 };
 
