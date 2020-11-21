@@ -19,19 +19,19 @@ describe('Testing Client', () => {
 
   it('Should Test state is initializing properly for starting color', () => {
     const app = shallow(<App />);
-    console.log('app.html', app.state());
+    //console.log('app.html', app.state());
     expect(app.state().photoColor).toBe('black');
   });
 
   it('Should Test InitialQuantity is rendering properly', () => {
     const app = shallow(<App />);
-    console.log('app.html', app.state());
+    // console.log('app.html', app.state());
     expect(app.state().quantity).toBe(1);
   });
 
   it('Should Test that the container for photos is rendering properly', () => {
     const app = shallow(<App />);
-    console.log('app.html', app.state());
+    // console.log('app.html', app.state());
     expect(Array.isArray(app.state().photos)).toBe(true);
   });
 });

@@ -1,7 +1,6 @@
 require('babel-polyfill');
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
-//import adapter from 'enzyme-adpater-react-16';
 import Mainpic from './components/zoomableMainpic.jsx';
 import Styled from './styledComponents/styles.jsx';
 
