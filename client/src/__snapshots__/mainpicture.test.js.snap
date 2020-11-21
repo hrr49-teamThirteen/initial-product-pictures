@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Main Pic Should render the app initially 1`] = `ShallowWrapper {}`;
+
+exports[`Testing for Main Pic to be rendering properly Should render the app initially 1`] = `ShallowWrapper {}`;

@@ -1,22 +1,35 @@
 let db = require('./index.js');
 
 module.exports = {
-  getAll: function() {
+  getAllProducts: function() {
     return new Promise ((resolve, reject) =>{
       db.connection.query('SELECT * FROM products', (err, results, fields) => {
         if (err) {
-          console.log('Error retrieving Data');
+          console.log('Error retrieving Product Data');
           reject(err);
         } else {
-          console.log('Retrieved Data Successfully');
+          console.log('Retrieved Product Data Successfully');
           resolve(results);
         }
       });
     });
   },
-  writeProduct: function(photos, colorID, price, reviewscore, questions, title) {
+  getAllPhotos: function() {
+    return new Promise ((resolve, reject) => {
+      db.connection.query('Select * FROM photos', (err, results, fields) => {
+        if (err) {
+          console.log('Error retrieving Photo Data');
+          reject(err);
+        } else {
+          console.log('Retrieved Photo Data Successfully');
+          resolve(results);
+        }
+      });
+    });
+  },
+  writeProduct: function(colorID, price, reviewscore, questions, title) {
     return new Promise((resolve, reject) => {
-      db.connection.query(`INSERT INTO products (photoID, colorID, price, reviewscore, questions, title) VALUES ('${photos}','${colorID}','${price}','${reviewscore}','${questions}','${title}')`, (err) => {
+      db.connection.query(`INSERT INTO products (colorID, price, reviewscore, questions, title) VALUES ('${colorID}','${price}','${reviewscore}','${questions}','${title}')`, (err) => {
         if (err) {
           console.log('There was an Error writing the product info');
           reject(err);
@@ -29,7 +42,7 @@ module.exports = {
   },
   writePhoto: function(photoURL, colorID) {
     return new Promise((resolve, reject) => {
-      dq.connection.query(`INSERT INTO photos (photoURL, colorID) VALUES ('${photoURL}', '${colorID}')`, (err) => {
+      db.connection.query(`INSERT INTO photos (photoURL, colorID) VALUES ('${photoURL}', '${colorID}')`, (err) => {
         if (err) {
           console.log('There was an Error writing the photo info');
           reject(err);
@@ -39,5 +52,33 @@ module.exports = {
         }
       });
     });
+  },
+  getAllRedPhotos: function() {
+    return new Promise((resolve, reject) => {
+      db.connection.query('SELECT * FROM photos WHERE colorID=1', (err, results, fields) => {
+        if (err) {
+          console.log('Error grabbing all Red Photos');
+          reject(err);
+        } else {
+          console.log('Successfully got all Red Photos');
+          resolve(results);
+        }
+      });
+    });
+  },
+  getAllBlackPhotos: function() {
+    return new Promise((resolve, reject) => {
+      db.connection.query('SELECT * FROM photos WHERE colorID=0', (err, results, fields) => {
+        if (err) {
+          console.log('Error grabbing all Red Photos');
+          reject(err);
+        } else {
+          console.log('Successfully got all Red Photos');
+          resolve(results);
+        }
+      });
+    });
   }
 };
+
+//INSERT INTO products (colorID, price, reviewscore, questions, title) VALUES (1, 99.00, 4, 91, "Keurig K-Cup Coffe thingy")

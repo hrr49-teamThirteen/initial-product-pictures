@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Client Should render the app initially 1`] = `ShallowWrapper {}`;
