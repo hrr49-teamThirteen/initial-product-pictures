@@ -10,7 +10,7 @@ let models = require('./database/models.js');
 
 app.use(express.static('client/dist'));
 
-app.get('/api/products', async function(req, res) {
+app.get('/api/products1', async function(req, res) {
   try {
     let productResults = await models.getAllProducts();
     //let photoResults = await models.getAllPhotos();
