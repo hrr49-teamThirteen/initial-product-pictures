@@ -28,7 +28,7 @@ class App extends React.Component {
 
   componentDidMount() {
     $.ajax({
-      url: '/api/products',
+      url: '/api/products1',
       type: 'GET',
       success: (products) => {
         //console.log('products', products);
