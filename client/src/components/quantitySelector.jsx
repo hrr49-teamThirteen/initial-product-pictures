@@ -1,4 +1,4 @@
-import React from 'react';
+const {React} = window;
 
 class QuantitySelector extends React.Component {
   constructor(props) {
@@ -7,7 +7,7 @@ class QuantitySelector extends React.Component {
 
     };
   }
-  
+
   render() {
     return (
       <div align='right'>

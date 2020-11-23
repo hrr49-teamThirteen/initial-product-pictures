@@ -1,5 +1,6 @@
-import React from 'react';
+const {React} = window;
 import Style from '../styledComponents/styles.jsx';
+
 class ColorSeclector extends React.Component {
   constructor(props) {
     super(props);

@@ -1,4 +1,5 @@
-import React from 'react';
+const {React} = window;
+
 import Styled from '../styledComponents/styles.jsx';
 
 class morePics extends React.Component {

@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+const {React} = window;
+const {ReactDOM} = window;
 import Style from './styledComponents/styles.jsx';
 import Title from './components/title.jsx';
 import Price from './components/price.jsx';

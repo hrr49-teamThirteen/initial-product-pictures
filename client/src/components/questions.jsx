@@ -1,4 +1,4 @@
-import React from 'react';
+const {React} = window;
 
 const Questions = (props) => (
   <span>92 Questions</span>
