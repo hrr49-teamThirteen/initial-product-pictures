@@ -1,4 +1,4 @@
-import React from 'react';
+const {React} = window;
 
 const Price = (props) => (
   <div align='right'>

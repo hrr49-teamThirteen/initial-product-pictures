@@ -1,4 +1,4 @@
-import React from 'react';
+const {React} = window;
 import StyledComponents from '../styledComponents/styles.jsx';
 
 const Title = (props) => (

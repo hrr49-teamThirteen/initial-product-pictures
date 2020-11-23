@@ -1,4 +1,5 @@
-import React from 'react';
+const {React} = window;
+
 import PictureCarouselEntry from './pictureCarouselEntry.jsx';
 import Styled from '../styledComponents/styles.jsx';
 

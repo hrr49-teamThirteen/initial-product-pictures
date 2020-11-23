@@ -1,37 +1,37 @@
-import Style from 'styled-components';
+const {styled} = window;
 
 export default {
   MainDiv:
-  Style.div`
+  styled.div`
     display: flex;
     justify-content: space-between;
     `,
   Title:
-  Style.h1`
+  styled.h1`
     font-weight: bold;
     font-size: 30px;
     text-align: center;
     `,
   ReviewScore:
-  Style.span`
+  styled.span`
     font-size: 18px;
     `,
   PictureLeft:
-  Style.div`
+  styled.div`
     align: left;
   `,
   Photosize:
-  Style.img`
+  styled.img`
     height: 100px;
     width: 100px;
     `,
   ColorSelectB:
-  Style.button`
+  styled.button`
     background-color: black;
     text: black;
     `,
   ColorSelectR:
-  Style.button`
+  styled.button`
     background-color: red;
     text: red;
     `
