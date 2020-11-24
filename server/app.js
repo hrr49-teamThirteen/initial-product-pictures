@@ -48,4 +48,8 @@ app.get('/api/photosRed', async function (req, res) {
 });
 //app.get('test')
 
+
+app.listen(port, function() {
+  console.log(`Listening on port '${port}`);
+});
 module.exports = { app };
