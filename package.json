@@ -11,7 +11,7 @@
       "setupFiles": [ "./setupTests.js"]
   },
   "scripts": {
-    "server": "nodemon server/index.js",
+    "server": "nodemon server/app.js",
     "build": "webpack -d --watch",
     "seed": "node server/database/faker.js",
     "test": "jest",
