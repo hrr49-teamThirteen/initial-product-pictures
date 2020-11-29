@@ -1,10 +1,26 @@
 const {React} = window;
 import StyledComponents from '../styledComponents/styles.jsx';
 
-const Title = (props) => (
-  <div>
-    <StyledComponents.Title>Keurig K-Classic Single-Serve K-Cup Pod Coffee Maker - K50</StyledComponents.Title>
-  </div>
-);
+class Title extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  isTitleDefined() {
+    if (this.props.title[0] !== undefined) {
+      return (<StyledComponents.Title>{this.props.title[0].title}</StyledComponents.Title>);
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        {this.isTitleDefined()}
+      </div>
+    );
+  }
+
+}
+
 
 export default Title;
