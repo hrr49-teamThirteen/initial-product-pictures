@@ -31,7 +31,7 @@ class App extends React.Component {
       url: '/api/products1',
       type: 'GET',
       success: (products) => {
-        //console.log('products', products);
+        console.log('products', products);
         this.setState({products: products});
       }
     });
@@ -71,22 +71,21 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Title />
+        <Style.HeaderStuff></Style.HeaderStuff>
+        <Title title={this.state.products}/>
         <Style.MainDiv>
           <div>
             <PictureCarousel setMainPhoto={this.setMainPhoto.bind(this)} photos={this.state.photoColor === 'black' ? this.state.photosBlack : this.state.photosRed}/>
           </div>
           <div>
-            <ZoomableMainPic mainPhoto={this.state.mainPhoto} />
+            <ZoomableMainPic startingPhoto={this.state.photosBlack} mainPhoto={this.state.mainPhoto} />
           </div>
-          <div>
-            <Price />
-            <div>
-              <ReviewScore />
-            </div>
+          <Style.RightSideStuff>
+            <Price price={this.state.products}/>
+            <ReviewScore reviewScore={this.state.products}/>
             <QuantitySelector setQuantity={this.setQuantity.bind(this)}/>
             <ColorSelector setColor={this.setPhotoColor.bind(this)}/>
-          </div>
+          </Style.RightSideStuff>
         </Style.MainDiv>
       </div>
     );
