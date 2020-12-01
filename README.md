@@ -40,5 +40,6 @@ npm install
 2)Webpack start is 'npm run build'
 3)You have to set up the schema before you run the faker seed data.
 4)Seed should be 'npm run seed'
-5)Port is 1238 for server 
+5)Port is 1238 for server
 
+-- mysql -u root < schema.sql -pcheeze

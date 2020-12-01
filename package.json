@@ -8,7 +8,9 @@
     "node": ">=6.13.0"
   },
   "jest": {
-      "setupFiles": [ "./setupTests.js"]
+    "setupFiles": [
+      "./setupTests.js"
+    ]
   },
   "scripts": {
     "server": "nodemon server/app.js",
