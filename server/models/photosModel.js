@@ -15,9 +15,9 @@ module.exports = {
       });
     });
   },
-  writePhoto(photoURL, colorID) {
+  writePhoto(photoURL, colorID, productID) {
     return new Promise((resolve, reject) => {
-      db.connection.query(`INSERT INTO photos (photoURL, colorID) VALUES ('${photoURL}', '${colorID}')`, (err) => {
+      db.connection.query(`INSERT INTO photos (photoURL, colorID, product_id) VALUES ('${photoURL}', '${colorID}', ${productID})`, (err) => {
         if (err) {
           console.log('There was an Error writing the photo info');
           reject(err);

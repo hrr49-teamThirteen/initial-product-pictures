@@ -6,6 +6,7 @@ USE fec;
 
 CREATE TABLE photos (
   id INT NOT NULL AUTO_INCREMENT,
+  product_id INT NOT NULL,
   photoURL VARCHAR(255),
   colorID INT NOT NULL,
   PRIMARY KEY (id)
@@ -21,4 +22,5 @@ CREATE TABLE products (
   PRIMARY KEY (id)
 );
 
+ALTER TABLE photos ADD FOREIGN KEY (product_id) REFERENCES products(id);
 
