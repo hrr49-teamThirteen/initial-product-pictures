@@ -1,12 +1,11 @@
-let express = require('express');
-let mysql = require('mysql');
+/* eslint-disable no-console */
+const mysql = require('mysql');
 
-
-let connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'cheeze',
-  database: 'fec'
+  database: 'fec',
 });
 
 connection.connect((err) => {

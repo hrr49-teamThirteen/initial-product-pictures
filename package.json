@@ -13,7 +13,7 @@
     ]
   },
   "scripts": {
-    "server": "nodemon server/app.js",
+    "server": "nodemon server/index.js",
     "build": "webpack -d --watch",
     "seed": "node server/database/faker.js",
     "test": "jest",
@@ -26,6 +26,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.19.0",
+    "eslint-config-airbnb": "^18.2.1",
     "express": "^4.17.1",
     "faker": "^5.1.0",
     "jquery": "^3.5.1",
@@ -44,6 +45,7 @@
     "babel-loader": "^8.2.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
+    "eslint": "^7.14.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^26.6.3",
     "webpack": "^4.44.2",

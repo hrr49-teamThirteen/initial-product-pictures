@@ -1,55 +1,21 @@
+/* eslint-disable no-console */
 const express = require('express');
-let app = express();
-//db = require('./database/models.js');
-let bodyparser = require('body-parser');
-app.use(bodyparser.urlencoded({extended: true}));
+const bodyparser = require('body-parser');
+
+const app = express();
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(express.json());
 
-let port = 1238;
-let models = require('./database/models.js');
+const productsController = require('./controllers/productsController');
+const photosController = require('./controllers/photosController');
 
 app.use(express.static('client/dist'));
 
-app.get('/api/products1', async function(req, res) {
-  try {
-    let productResults = await models.getAllProducts();
-    //let photoResults = await models.getAllPhotos();
-    res.status(200).json(productResults);
-  } catch (err) {
-    res.status(404).send(err.message);
-  }
-});
+app.get('/api/products1', productsController.getAllProducts);
+app.get('/api/photos', photosController.getAllPhotos);
+app.get('/api/photosBlack', photosController.getAllBlackPhotos);
+app.get('/api/photosRed', photosController.getAllRedPhotos);
 
-app.get('/api/photos', async function (req, res) {
-  try {
-    let photoResults = await models.getAllPhotos();
-    res.status(200).json(photoResults);
-  } catch (err) {
-    res.status(404).send(err.message);
-  }
-});
-
-app.get('/api/photosBlack', async function (req, res) {
-  try {
-    let blackResults = await models.getAllBlackPhotos();
-    res.status(200).json(blackResults);
-  } catch (err) {
-    res.status(404).send(err.message);
-  }
-});
-
-app.get('/api/photosRed', async function (req, res) {
-  try {
-    let redResults = await models.getAllRedPhotos();
-    res.status(200).json(redResults);
-  } catch (err) {
-    res.status(404).send(err.message);
-  }
-});
-//app.get('test')
-
-
-app.listen(port, function() {
-  console.log(`Listening on port '${port}`);
-});
-module.exports = { app };
+module.exports = {
+  app,
+};
