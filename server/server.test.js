@@ -33,6 +33,3 @@ describe('Testing Paths', () => {
 //     expect(sum).toBe(4);
 //   });
 // });
-
-
-
