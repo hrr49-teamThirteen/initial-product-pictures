@@ -23,11 +23,14 @@ async function seedProducts() {
 
 async function seedPhotos() {
   const results = [];
-  for (let k = 1; k <= 20; k += 1) {
+  for (let k = 1; k <= 1000; k += 1) {
+    let productID = k % 100;
+    if (productID === 0) productID += 1;
+
     const result = await photosModel.writePhoto(
       faker.image.imageUrl(),
       faker.random.number({ min: 1, max: 2 }),
-      faker.random.number({ min: 1, max: 100 }),
+      productID,
     );
     results.push(result);
   }

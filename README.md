@@ -19,9 +19,75 @@
 
 > Some usage instructions
 
+## Photos API usage
+> read / get
+All photos - /api/photos
+By id      - /api/photos/id=:id
+By product - /api/photos/forproductid/id=:id
+all black  - /api/photosBlack
+all red    - /api/photosRed
+
+> update / put
+/api/photos/updatephoto/id=:id
+Body Format JSON
+{
+    "product_id": int,
+    "photo_url": string,
+    "color_id": int(1 or 2)
+}
+
+> post / create
+/api/photos/createphoto
+Body Format JSON
+{
+    "photoURL": string,
+    "colorID": int(1 or 2),
+    "productID": int,
+}
+
+> delete
+/api/photos/delete/id=:id
+
+
+## Products API usage
+> Read / get
+All products - /api/products1
+By id        - /api/products/id=:id
+
+> update / put
+/api/products/updateproduct/id=:id
+Body Format JSON
+{
+    "colorid": int,
+    "price": DECIMAL(10, 2),
+    "reviewscore": DECIMAL(10, 2) (1.00-5.00),
+    "questions": int,
+    "title": string
+}
+
+> post / create
+/api/products/createproduct
+Body Format JSON
+{
+    "colorID": int,
+    "price": DECIMAL(10, 2),
+    "reviewscore": DECIMAL(10, 2) (1.00-5.00),
+    "questions": int,
+    "title": string
+}
+
+> delete
+/api/products/delete/id=:id', productsController.deleteProduct
+
+
+
+
+
+
+
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
+An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm
 
 - Node 6.13.0
 - etc
@@ -36,7 +102,7 @@ From within the root directory:
 npm install -g webpack
 npm install
 ```
-1) Server start is 'npm run server'
+1Server start is 'npm run server'
 2)Webpack start is 'npm run build'
 3)You have to set up the schema before you run the faker seed data.
 4)Seed should be 'npm run seed'
