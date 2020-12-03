@@ -28,4 +28,49 @@ module.exports = {
       });
     });
   },
+  getProductById(id) {
+    return new Promise((resolve, reject) => {
+      db.connection.query('SELECT * FROM products WHERE id=?;', [id], (err, results) => {
+        if (err) return reject(err);
+        return resolve(results);
+      });
+    });
+  },
+  updateProduct(data, id) {
+    return new Promise((resolve, reject) => {
+      const values = [
+        data.colorid,
+        data.price,
+        data.reviewscore,
+        data.questions,
+        data.title,
+        id,
+      ];
+      const statement = `
+        UPDATE products
+        SET colorID=?, price=?, reviewscore=?, questions=?, title="?"
+        WHERE id=?;`;
+      db.connection.query(statement, values, (err, result) => {
+        if (err) return reject(err);
+        return resolve(result);
+      });
+    });
+  },
+  deleteProduct(id) {
+    return new Promise((resolve, reject) => {
+      const statement = 'DELETE FROM products WHERE id=?;';
+      db.connection.query(statement, [id], (err, results) => {
+        if (err) return reject(err);
+        return resolve(results);
+      });
+    });
+  },
 };
+
+// id INT NOT NULL AUTO_INCREMENT,
+// colorID INT NOT NULL,
+// price DECIMAL(10, 2) NOT NULL,
+// reviewscore DECIMAL(10, 2) NOT NULL,
+// questions INT NOT NULL,
+// title VARCHAR(255),
+// PRIMARY KEY (id)

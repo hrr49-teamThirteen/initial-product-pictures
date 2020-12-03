@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const { app } = require('./app.js');
 
-const port = 1238;
+const port = 3000;
 
 app.listen(port, (err) => {
   if (err) return console.log('error starting express server msg- ', err.message);
