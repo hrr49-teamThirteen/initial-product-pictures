@@ -20,43 +20,47 @@
 > Some usage instructions
 
 ## Photos API usage
-> read / get
-All photos - /api/photos
-By id      - /api/photos/id=:id
-By product - /api/photos/forproductid/id=:id
-all black  - /api/photosBlack
-all red    - /api/photosRed
+### read / get
+> /api/photos
+> /api/photos/id=:id
+> /api/photos/forproductid/id=:id
+> /api/photosBlack
+> /api/photosRed
 
-> update / put
-/api/photos/updatephoto/id=:id
-Body Format JSON
+### update / put
+> /api/photos/updatephoto/id=:id
+#### Body Format JSON
+```sh
 {
     "product_id": int,
     "photo_url": string,
     "color_id": int(1 or 2)
 }
+```
 
-> post / create
-/api/photos/createphoto
-Body Format JSON
+### post / create
+ > /api/photos/createphoto
+#### Body Format JSON
+```sh
 {
     "photoURL": string,
     "colorID": int(1 or 2),
     "productID": int,
 }
+```
 
-> delete
-/api/photos/delete/id=:id
-
+### delete
+> /api/photos/delete/id=:id
 
 ## Products API usage
-> Read / get
-All products - /api/products1
-By id        - /api/products/id=:id
+### Read / get
+> /api/products1
+> /api/products/id=:id
 
-> update / put
-/api/products/updateproduct/id=:id
-Body Format JSON
+### update / put
+> /api/products/updateproduct/id=:id
+#### Body Format JSON
+```sh
 {
     "colorid": int,
     "price": DECIMAL(10, 2),
@@ -64,10 +68,12 @@ Body Format JSON
     "questions": int,
     "title": string
 }
+```
 
-> post / create
-/api/products/createproduct
-Body Format JSON
+### post / create
+> /api/products/createproduct
+#### Body Format JSON
+```sh
 {
     "colorID": int,
     "price": DECIMAL(10, 2),
@@ -75,9 +81,10 @@ Body Format JSON
     "questions": int,
     "title": string
 }
+```
 
-> delete
-/api/products/delete/id=:id', productsController.deleteProduct
+### delete
+> /api/products/delete/id=:id', productsController.deleteProduct
 
 
 
