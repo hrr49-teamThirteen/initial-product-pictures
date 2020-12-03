@@ -21,14 +21,17 @@
 
 ## Photos API usage
 ### read / get
-> /api/photos
-> /api/photos/id=:id
-> /api/photos/forproductid/id=:id
-> /api/photosBlack
-> /api/photosRed
-
+```sh
+/api/photos
+/api/photos/id=:id
+/api/photos/forproductid/id=:id
+/api/photosBlack
+/api/photosRed
+```
 ### update / put
-> /api/photos/updatephoto/id=:id
+```sh
+ /api/photos/updatephoto/id=:id
+```
 #### Body Format JSON
 ```sh
 {
@@ -39,7 +42,9 @@
 ```
 
 ### post / create
- > /api/photos/createphoto
+```sh
+/api/photos/createphoto
+```
 #### Body Format JSON
 ```sh
 {
@@ -50,15 +55,21 @@
 ```
 
 ### delete
-> /api/photos/delete/id=:id
+```sh
+/api/photos/delete/id=:id
+```
 
 ## Products API usage
 ### Read / get
-> /api/products1
-> /api/products/id=:id
+```sh
+/api/products1
+/api/products/id=:id
+```
 
 ### update / put
-> /api/products/updateproduct/id=:id
+```sh
+/api/products/updateproduct/id=:id
+```
 #### Body Format JSON
 ```sh
 {
@@ -71,7 +82,9 @@
 ```
 
 ### post / create
-> /api/products/createproduct
+```sh
+/api/products/createproduct
+```
 #### Body Format JSON
 ```sh
 {
@@ -84,8 +97,9 @@
 ```
 
 ### delete
-> /api/products/delete/id=:id', productsController.deleteProduct
-
+```sh
+/api/products/delete/id=:id', productsController.deleteProduct
+```
 
 
 
