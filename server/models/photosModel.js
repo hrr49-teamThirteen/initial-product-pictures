@@ -99,10 +99,23 @@ module.exports = {
       });
     });
   },
+  loadCSVphotos() {
+    const path = `${__dirname}/../database/data/photos.csv`;
+    return new Promise((resolve, reject) => {
+      const statement = `
+        LOAD DATA INFILE ?
+        INTO TABLE photos
+        FIELDS TERMINATED BY ','
+        ENCLOSED BY '"'
+        LINES TERMINATED BY '\n'
+        IGNORE 1 ROWS
+      `;
+      db.connection.query(statement, [path], (err, results) => {
+        console.log('results', results);
+        console.log('err', err);
+        if (err) return reject(err);
+        return resolve(results);
+      });
+    });
+  },
 };
-
-// id INT NOT NULL AUTO_INCREMENT,
-// product_id INT NOT NULL,
-// photoURL VARCHAR(255),
-// colorID INT NOT NULL,
-// PRIMARY KEY (id)

@@ -15,7 +15,7 @@
   "scripts": {
     "server": "nodemon server/index.js",
     "build": "webpack -d --watch",
-    "seed": "node server/database/faker.js",
+    "seed": "node server/database/seed.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },

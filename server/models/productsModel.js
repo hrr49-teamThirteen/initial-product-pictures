@@ -65,12 +65,23 @@ module.exports = {
       });
     });
   },
+  loadCSVproducts() {
+    const path = `${__dirname}/../database/data/products.csv`;
+    return new Promise((resolve, reject) => {
+      const statement = `
+        LOAD DATA INFILE ?
+        INTO TABLE products
+        FIELDS TERMINATED BY ','
+        ENCLOSED BY '"'
+        LINES TERMINATED BY '\n'
+        IGNORE 1 ROWS
+      `;
+      db.connection.query(statement, [path], (err, results) => {
+        console.log('results', results);
+        console.log('err', err);
+        if (err) return reject(err);
+        return resolve(results);
+      });
+    });
+  },
 };
-
-// id INT NOT NULL AUTO_INCREMENT,
-// colorID INT NOT NULL,
-// price DECIMAL(10, 2) NOT NULL,
-// reviewscore DECIMAL(10, 2) NOT NULL,
-// questions INT NOT NULL,
-// title VARCHAR(255),
-// PRIMARY KEY (id)

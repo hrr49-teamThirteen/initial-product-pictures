@@ -98,7 +98,7 @@
 
 ### delete
 ```sh
-/api/products/delete/id=:id', productsController.deleteProduct
+/api/products/delete/id=:id'
 ```
 
 
