@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
-const db = require('../database/index.js');
+
+// const db = require('../database/index.js'); // mysql
+const db = require('../database/postgres_con.js'); // postgres
 
 module.exports = {
   getAllProducts() {
@@ -15,9 +17,9 @@ module.exports = {
       });
     });
   },
-  writeProduct(colorID, price, reviewscore, questions, title) {
+  writeProduct(colorid, price, reviewscore, questions, title) {
     return new Promise((resolve, reject) => {
-      db.connection.query(`INSERT INTO products (colorID, price, reviewscore, questions, title) VALUES ('${colorID}','${price}','${reviewscore}','${questions}','${title}')`, (err) => {
+      db.connection.query(`INSERT INTO products (colorid, price, reviewscore, questions, title) VALUES ('${colorid}','${price}','${reviewscore}','${questions}','${title}')`, (err) => {
         if (err) {
           console.log('There was an Error writing the product info');
           reject(err);
@@ -48,7 +50,7 @@ module.exports = {
       ];
       const statement = `
         UPDATE products
-        SET colorID=?, price=?, reviewscore=?, questions=?, title="?"
+        SET colorid=?, price=?, reviewscore=?, questions=?, title="?"
         WHERE id=?;`;
       db.connection.query(statement, values, (err, result) => {
         if (err) return reject(err);

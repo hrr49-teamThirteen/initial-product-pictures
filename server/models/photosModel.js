@@ -15,9 +15,9 @@ module.exports = {
       });
     });
   },
-  writePhoto(photoURL, colorID, productID) {
+  writePhoto(photourl, colorid, productID) {
     return new Promise((resolve, reject) => {
-      db.connection.query(`INSERT INTO photos (photoURL, colorID, product_id) VALUES ('${photoURL}', '${colorID}', ${productID})`, (err) => {
+      db.connection.query(`INSERT INTO photos (photourl, colorid, product_id) VALUES ('${photourl}', '${colorid}', ${productID})`, (err) => {
         if (err) {
           console.log('There was an Error writing the photo info');
           reject(err);
@@ -30,7 +30,7 @@ module.exports = {
   },
   getAllRedPhotos() {
     return new Promise((resolve, reject) => {
-      db.connection.query('SELECT * FROM photos WHERE colorID=1', (err, results) => {
+      db.connection.query('SELECT * FROM photos WHERE colorid=1', (err, results) => {
         if (err) {
           console.log('Error grabbing all Red Photos');
           reject(err);
@@ -43,7 +43,7 @@ module.exports = {
   },
   getAllBlackPhotos() {
     return new Promise((resolve, reject) => {
-      db.connection.query('SELECT * FROM photos WHERE colorID=0', (err, results) => {
+      db.connection.query('SELECT * FROM photos WHERE colorid=0', (err, results) => {
         if (err) {
           console.log('Error grabbing all Red Photos');
           reject(err);
@@ -80,7 +80,7 @@ module.exports = {
       ];
       const statement = `
         UPDATE photos
-        SET product_id=?, photoURL=?, colorID=?
+        SET product_id=?, photourl=?, colorid=?
         WHERE id=?;
         `;
       db.connection.query(statement, values, (err, result) => {

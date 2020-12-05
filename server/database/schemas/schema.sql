@@ -7,14 +7,14 @@ USE fec;
 CREATE TABLE photos (
   id INT NOT NULL AUTO_INCREMENT,
   product_id INT NOT NULL,
-  photoURL VARCHAR(255),
-  colorID INT NOT NULL,
+  photourl VARCHAR(255),
+  colorid INT NOT NULL,
   PRIMARY KEY (id)
 );
 
 CREATE TABLE products (
   id INT NOT NULL AUTO_INCREMENT,
-  colorID INT NOT NULL,
+  colorid INT NOT NULL,
   price DECIMAL(10, 2) NOT NULL,
   reviewscore DECIMAL(10, 2) NOT NULL,
   questions INT NOT NULL,
