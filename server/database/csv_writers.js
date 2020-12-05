@@ -2,8 +2,8 @@ const fs = require('fs');
 const faker = require('faker');
 
 // these need to be defined here, dont change this.
-const NUM_PRODUCTS = 1000;
-const NUM_PHOTOS = 10000;
+const NUM_PRODUCTS = 10000000;
+const NUM_PHOTOS = 20000000;
 
 function productWriter() {
   return new Promise((resolve) => {
