@@ -2,13 +2,13 @@ const fs = require('fs');
 const faker = require('faker');
 
 // these need to be defined here, dont change this.
-const NUM_PRODUCTS = 1000000;
-const NUM_PHOTOS = 10000000;
+const NUM_PRODUCTS = 1000;
+const NUM_PHOTOS = 10000;
 
 function productWriter() {
   return new Promise((resolve) => {
     const writer = fs.createWriteStream('server/database/data/products.csv');
-    writer.write('id, colorID, price, reviewscore, questions, title\n');
+    writer.write('id, colorid, price, reviewscore, questions, title\n');
     let count = 0;
     const recursiveWrite = () => {
       let keepWriting = true;
@@ -41,7 +41,7 @@ function productWriter() {
 function photoWriter() {
   return new Promise((resolve) => {
     const writer = fs.createWriteStream('server/database/data/photos.csv');
-    writer.write('id, product_id, photoURL, colorID\n');
+    writer.write('id, product_id, photourl, colorid\n');
     let count = 0;
     const recursiveWrite = () => {
       let keepWriting = true;
