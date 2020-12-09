@@ -3,12 +3,20 @@ const faker = require('faker');
 
 // these need to be defined here, dont change this.
 const NUM_PRODUCTS = 10000000;
-const NUM_PHOTOS = 20000000;
+const NUM_PHOTOS = 30000000;
+
+const NUM_USERS = 40000000;
+const NUM_RATINGS = 50000000;
+
+function randomImageUrl() {
+  const number = faker.random.number({ min: 1, max: 400 });
+  return `https://fec-lanister-product-images.s3.amazonaws.com/images/nearmiss_${number}.png`;
+}
 
 function productWriter() {
   return new Promise((resolve) => {
     const writer = fs.createWriteStream('server/database/data/products.csv');
-    writer.write('id, colorid, price, reviewscore, questions, title\n');
+    writer.write('id, colorid, price, questions, title\n');
     let count = 0;
     const recursiveWrite = () => {
       let keepWriting = true;
@@ -18,7 +26,6 @@ function productWriter() {
           `${count},`
           + `${faker.random.number({ min: 0, max: 1 })},`
           + `${faker.commerce.price()},`
-          + `${faker.random.number({ min: 1, max: 5 })},`
           + `${faker.random.number({ min: 1, max: 100 })},`
           + `${faker.commerce.productName()}\n`,
         );
@@ -49,8 +56,8 @@ function photoWriter() {
         count += 1;
         keepWriting = writer.write(
           `${count},`
-          + `${((count % NUM_PRODUCTS) + 1)},`
-          + `${faker.image.imageUrl()},`
+          + `${faker.random.number({ min: 1, max: NUM_PRODUCTS })},`
+          + `${randomImageUrl()},`
           + `${faker.random.number({ min: 0, max: 1 })}\n`,
         );
       }
@@ -69,7 +76,70 @@ function photoWriter() {
   });
 }
 
-module.exports = {
-  productWriter,
-  photoWriter,
-};
+function usersWriter() {
+  return new Promise((resolve) => {
+    const writer = fs.createWriteStream('server/database/data/users.csv');
+    writer.write('id, username\n');
+    let count = 0;
+    const recursiveWrite = () => {
+      let keepWriting = true;
+      while (count < NUM_USERS && keepWriting) {
+        count += 1;
+        keepWriting = writer.write(
+          `${count},`
+          + `${faker.internet.userName()}\n`,
+        );
+      }
+      if (keepWriting === false && count < NUM_USERS) {
+        process.stdout.write(`\r\x1b[Kusers written to CSV: ${Math.ceil((count / NUM_USERS) * 100)}%`);
+        writer.once('drain', recursiveWrite);
+      } else {
+        process.stdout.write('\n');
+        writer.end();
+      }
+    };
+    recursiveWrite();
+    writer.on('finish', () => {
+      resolve('Success writing users CSV');
+    });
+  });
+}
+
+function ratingsWriter() {
+  return new Promise((resolve) => {
+    const writer = fs.createWriteStream('server/database/data/ratings.csv');
+    writer.write('id, user_id, product_id, rating_given\n');
+    let count = 0;
+    const recursiveWrite = () => {
+      let keepWriting = true;
+      while (count < NUM_RATINGS && keepWriting) {
+        count += 1;
+        keepWriting = writer.write(
+          `${count},`
+          + `${faker.random.number({ min: 1, max: NUM_USERS })},`
+          + `${faker.random.number({ min: 1, max: NUM_PRODUCTS })},`
+          + `${faker.random.number({ min: 0, max: 5 })}\n`,
+        );
+      }
+      if (keepWriting === false && count < NUM_RATINGS) {
+        process.stdout.write(`\r\x1b[Kusers written to CSV: ${Math.ceil((count / NUM_RATINGS) * 100)}%`);
+        writer.once('drain', recursiveWrite);
+      } else {
+        process.stdout.write('\n');
+        writer.end();
+      }
+    };
+    recursiveWrite();
+    writer.on('finish', () => {
+      resolve('Success writing ratings CSV');
+    });
+  });
+}
+
+productWriter()
+  .then(() => photoWriter())
+  .then(() => usersWriter())
+  .then(() => ratingsWriter())
+  .catch((err) => {
+    console.log('error writing CSV', err.message);
+  });

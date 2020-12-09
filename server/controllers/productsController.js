@@ -1,11 +1,10 @@
-/* eslint-disable no-console */
 const productsModel = require('../models/productsModel');
 
 async function getAllProducts(req, res) {
   try {
     const productResults = await productsModel.getAllProducts();
     // let photoResults = await models.getAllPhotos();
-    res.status(200).json(productResults);
+    res.status(200).json(productResults.rows);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -14,7 +13,7 @@ async function getAllProducts(req, res) {
 async function getProductById(req, res) {
   try {
     const singleProduct = await productsModel.getProductById(req.params.id);
-    res.status(200).json(singleProduct);
+    res.status(200).json(singleProduct.rows[0]);
   } catch (err) {
     res.status(500).send(err.message);
   }

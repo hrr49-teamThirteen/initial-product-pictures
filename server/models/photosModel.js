@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-const db = require('../database/index.js');
+// const db = require('../database/index.js'); // mysql
+const db = require('../database/postgres_con.js'); // postgres
 
 module.exports = {
   getAllPhotos() {
@@ -56,7 +57,7 @@ module.exports = {
   },
   getPhotoById(id) {
     return new Promise((resolve, reject) => {
-      db.connection.query('SELECT * FROM photos WHERE id=?;', [id], (err, results) => {
+      db.connection.query('SELECT * FROM photos WHERE id=$1;', [id], (err, results) => {
         if (err) return reject(err);
         return resolve(results);
       });
@@ -64,7 +65,7 @@ module.exports = {
   },
   getPhotosForProduct(id) {
     return new Promise((resolve, reject) => {
-      db.connection.query('SELECT * FROM photos WHERE product_id=?;', [id], (err, results) => {
+      db.connection.query('SELECT * FROM photos WHERE product_id=$1;', [id], (err, results) => {
         if (err) return reject(err);
         return resolve(results);
       });
@@ -80,8 +81,8 @@ module.exports = {
       ];
       const statement = `
         UPDATE photos
-        SET product_id=?, photourl=?, colorid=?
-        WHERE id=?;
+        SET product_id=$1, photourl=$2, colorid=$3
+        WHERE id=$4;
         `;
       db.connection.query(statement, values, (err, result) => {
         if (err) return reject(err);
@@ -92,25 +93,19 @@ module.exports = {
   deletePhoto(id) {
     return new Promise((resolve, reject) => {
       console.log('here');
-      const statement = 'DELETE FROM photos WHERE id=?;';
+      const statement = 'DELETE FROM photos WHERE id=$1;';
       db.connection.query(statement, [id], (err, result) => {
         if (err) return reject(err);
         return resolve(result);
       });
     });
   },
-  loadCSVphotos() {
-    const path = `${__dirname}/../database/data/photos.csv`;
+
+  // postgres update autoincrementing id's
+  updateAutoIdPhotos() {
+    const statement = 'SELECT setval(\'photos_id_seq\', max(id)) FROM photos;';
     return new Promise((resolve, reject) => {
-      const statement = `
-        LOAD DATA INFILE ?
-        INTO TABLE photos
-        FIELDS TERMINATED BY ','
-        ENCLOSED BY '"'
-        LINES TERMINATED BY '\n'
-        IGNORE 1 ROWS
-      `;
-      db.connection.query(statement, [path], (err, results) => {
+      db.connection.query(statement, (err, results) => {
         console.log('results', results);
         console.log('err', err);
         if (err) return reject(err);
@@ -118,4 +113,25 @@ module.exports = {
       });
     });
   },
+
+  // mysql csv loader method
+  // loadCSVphotos() {
+  //   const path = `${__dirname}/../database/data/photos.csv`;
+  //   return new Promise((resolve, reject) => {
+  //     const statement = `
+  //       LOAD DATA INFILE ?
+  //       INTO TABLE photos
+  //       FIELDS TERMINATED BY ','
+  //       ENCLOSED BY '"'
+  //       LINES TERMINATED BY '\n'
+  //       IGNORE 1 ROWS
+  //     `;
+  //     db.connection.query(statement, [path], (err, results) => {
+  //       console.log('results', results);
+  //       console.log('err', err);
+  //       if (err) return reject(err);
+  //       return resolve(results);
+  //     });
+  //   });
+  // },
 };

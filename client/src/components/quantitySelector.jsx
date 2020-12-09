@@ -11,7 +11,8 @@ class QuantitySelector extends React.Component {
   render() {
     return (
       <div align='right'>
-        <select>QuantitySelector
+        Quantity
+        <select>
           <option>1</option>
           <option>2</option>
           <option>3</option>

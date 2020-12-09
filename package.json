@@ -14,10 +14,11 @@
   },
   "scripts": {
     "server": "nodemon server/index.js",
-    "build": "webpack -d --watch",
+    "build": "webpack -w ",
     "seed:mysql": "node server/database/seed.js",
     "seed:psql": "node server/database/postgres_seed.js",
     "seed:mongo": "node server/database/mongo_seed.js",
+    "seed:csv": "node server/database/csv_writers.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -26,14 +27,19 @@
     "url": "git+https://github.com/Team-Martell/initialviewandproductpiccarousel"
   },
   "dependencies": {
+    "aws-sdk": "^2.804.0",
+    "axios": "^0.21.0",
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
     "eslint-config-airbnb": "^18.2.1",
     "express": "^4.17.1",
     "faker": "^5.1.0",
     "jquery": "^3.5.1",
+    "mocha": "^8.2.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.4",
+    "multer": "^1.4.2",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.6",
     "pg": "^8.5.1",

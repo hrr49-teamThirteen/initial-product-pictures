@@ -6,21 +6,19 @@ class Title extends React.Component {
     super(props);
   }
 
-  isTitleDefined() {
-    if (this.props.title[0] !== undefined) {
-      return (<StyledComponents.Title>{this.props.title[0].title}</StyledComponents.Title>);
-    }
-  }
+  // isTitleDefined() {
+  //   if (this.props.title[0] !== undefined) {
+  //     return (<StyledComponents.Title>{this.props.title[0].title}</StyledComponents.Title>);
+  //   }
+  // }
 
   render() {
+    const { title } = this.props;
     return (
-      <div>
-        {this.isTitleDefined()}
-      </div>
+        <StyledComponents.Title>{title}</StyledComponents.Title>
     );
   }
 
 }
-
 
 export default Title;

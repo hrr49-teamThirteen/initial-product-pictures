@@ -3,7 +3,7 @@ const photosModel = require('../models/photosModel');
 async function getAllPhotos(req, res) {
   try {
     const photoResults = await photosModel.getAllPhotos();
-    res.status(200).json(photoResults);
+    res.status(200).json(photoResults.fields);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -30,7 +30,7 @@ async function getAllRedPhotos(req, res) {
 async function getPhotoById(req, res) {
   try {
     const results = await photosModel.getPhotoById(req.params.id);
-    res.status(200).json(results);
+    res.status(200).json(results.rows[0]);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -39,7 +39,7 @@ async function getPhotoById(req, res) {
 async function getPhotosForProduct(req, res) {
   try {
     const results = await photosModel.getPhotosForProduct(req.params.id);
-    res.status(200).json(results);
+    res.status(200).json(results.rows);
   } catch (err) {
     res.status(500).send(err.message);
   }

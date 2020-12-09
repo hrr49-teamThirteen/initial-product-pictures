@@ -2,7 +2,7 @@
 const { exec } = require('child_process');
 const productsModel = require('../models/productsModel');
 const photosModel = require('../models/photosModel');
-const { productWriter, photoWriter } = require('./csv_writers');
+const ratingsModel = require('../models/ratingsModel');
 
 const user = 'root';
 const pass = 'cheeze';
@@ -18,10 +18,10 @@ function initEmptyDb() {
 }
 
 initEmptyDb()
-  .then(() => productWriter())
-  .then(() => photoWriter())
   .then(() => productsModel.loadCSVproducts())
   .then(() => photosModel.loadCSVphotos())
+  .then(() => ratingsModel.loadCSVUsers())
+  .then(() => ratingsModel.loadCSVRatings())
   .then(() => (console.log('Success')))
   .catch((err) => {
     console.log('Error', err.message);
