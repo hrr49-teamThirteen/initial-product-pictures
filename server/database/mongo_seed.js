@@ -9,9 +9,9 @@ function randomImageUrl() {
   return `https://fec-lanister-product-images.s3.amazonaws.com/images/nearmiss_${number}.png`;
 }
 
-const NUM_PRODUCTS = 10;
-const NUM_PHOTOS = 20;
-const NUM_RATINGS = 40;
+const NUM_PRODUCTS = 10000000;
+const NUM_PHOTOS = 20000000;
+const NUM_RATINGS = 40000000;
 
 function ratingsJsonWriter() {
   return new Promise((resolve) => {
@@ -25,7 +25,7 @@ function ratingsJsonWriter() {
           id: count,
           user_id: faker.random.number({ min: 0, max: 1000 }),
           rate_given: faker.random.number({ min: 1, max: 5 }),
-          product_id: faker.random.number({ min: 1, max: NUM_PRODUCTS }),
+          product_id: `${faker.random.number({ min: 1, max: NUM_PRODUCTS })}`,
         };
         const data = JSON.stringify(rating, null, 2);
         keepWriting = writer.write(data);

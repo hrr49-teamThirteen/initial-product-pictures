@@ -92,7 +92,6 @@ module.exports = {
   },
   deletePhoto(id) {
     return new Promise((resolve, reject) => {
-      console.log('here');
       const statement = 'DELETE FROM photos WHERE id=$1;';
       db.connection.query(statement, [id], (err, result) => {
         if (err) return reject(err);

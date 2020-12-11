@@ -8,10 +8,8 @@ module.exports = {
     return new Promise((resolve, reject) => {
       db.connection.query(statement, [id], (err, results) => {
         if (err) {
-          console.log('Error retrieving Avg ratings');
           reject(err);
         } else {
-          console.log('Retrieved avg ratings Successfully');
           resolve(results);
         }
       });

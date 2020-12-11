@@ -27,3 +27,6 @@ dist/bundle.js
 server/database/data/
 
 config.js
+config.env
+sdc_server.pem
+.env

@@ -17,9 +17,9 @@ module.exports = {
       });
     });
   },
-  writeProduct(colorid, price, reviewscore, questions, title) {
+  writeProduct(colorid, price, questions, title) {
     return new Promise((resolve, reject) => {
-      db.connection.query('INSERT INTO products (colorid, price, reviewscore, questions, title) VALUES ($1,$2,$3,$4,$5);', [colorid, price, reviewscore, questions, title], (err) => {
+      db.connection.query('INSERT INTO products (colorid, price, questions, title) VALUES ($1,$2,$3,$4);', [colorid, price, questions, title], (err) => {
         if (err) {
           console.log('There was an Error writing the product info');
           reject(err);

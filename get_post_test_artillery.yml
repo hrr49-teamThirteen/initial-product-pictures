@@ -1,0 +1,44 @@
+config:
+  ensure:
+    p95: 200
+  target: "http://localhost:3001"
+  phases:
+    - duration: 10
+      arrivalRate: 1
+      name : "1 Request Per Second"
+    - duration: 10
+      arrivalRate: 10
+      name : "10 Request Per Second"
+    - duration: 10
+      arrivalRate: 100
+      name : "100 Request Per Second"
+    - duration: 10
+      arrivalRate: 1000
+      name : "1000 Request Per Second"
+
+scenarios:
+  - name: get Average product rating
+    flow:
+      - get:
+          url: "/api/products/avgrating/id=9999996"
+
+  - name: Get product by id
+    flow:
+      - get:
+          url: "/api/products/id=9999996"
+
+  - name: Post a product
+    flow:
+      - post:
+          url: "/api/products/createproduct"
+          json:
+          colorid: "http://placeimg.com/640/480"
+          price: 1
+          questions": 29
+          title: "Updated title"
+
+  - name: Get product by id
+    flow:
+      - get:
+          url: "/api/products/id=9999996"
+

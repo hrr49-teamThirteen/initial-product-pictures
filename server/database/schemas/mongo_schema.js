@@ -19,25 +19,25 @@ const PhotosSchema = new mongoose.Schema({
   id: Number,
   url: String,
   product_id: Number,
-  product: {
-    type: Schema.Types.ObjectId,
-    ref: 'Products',
-  },
+  // product: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Products',
+  // },
 });
 
 const RatingsSchema = new mongoose.Schema({
   id: Number,
   user_id: Number,
-  product_id: Number,
-  rate_given: {
-    type: Number,
-    min: 0,
-    max: 5,
-  },
-  product: {
-    type: Schema.Types.ObjectId,
-    ref: 'Products',
-  },
+  product_id: String,
+  // rate_given: {
+  //   type: Number,
+  //   min: 0,
+  //   max: 5,
+  // },
+  // product: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Products',
+  // },
 });
 
 const ProductsSchema = new mongoose.Schema({
@@ -49,18 +49,69 @@ const ProductsSchema = new mongoose.Schema({
     min: 0,
     max: 1,
   },
-  photos: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Photos',
-  }],
-  ratings: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Ratings',
-  }],
+  // photos: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Photos',
+  // }],
+  // ratings: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Ratings',
+  // }],
 });
 
+const Product = mongoose.model('Product', ProductsSchema);
+const Ratings = mongoose.model('Ratings', RatingsSchema);
+const Photos = mongoose.model('Photos', PhotosSchema);
+
+async function getProductById(data) {
+  // .setOptions({ explain: 'executionStats' });
+  const result = await Product.find({ id: data });
+  console.log('getProductById results: \n', result);
+}
+
+async function getPhotosForProduct(data) {
+// .setOptions({ explain: 'executionStats' });
+  const result = await Photos.find({ product_id: data });
+  console.log('getPhotosForProduct results: \n', result);
+}
+
+async function getAvgRatingsForProduct(id) {
+// .setOptions({ explain: 'executionStats' });
+  // const result = await Ratings.find({ product_id: id });
+  const result = await Ratings.aggregate([
+    { $match: { product_id: `${id}` } },
+    { $group: { _id: '$rate_given', averagerating: { $avg: '$rate_given' } } },
+  ], { explain: 'executionStats' });
+
+  console.log('getAvgRatingsForProduct results: \n', result);
+}
+
+async function updateProduct(data) {
+  // .setOptions({ explain: 'executionStats' });
+  const result = await Product.update({ id: data }, { title: 'updated' });
+  console.log('updateProduct results: \n', result);
+}
+
+async function updateRating(id, data) {
+  // .setOptions({ explain: 'executionStats' });
+  const result = await Ratings.updateOne({ id }, { rate_given: data });
+  console.log('updateRating results: \n', result);
+}
+
+async function updatePhoto(id, data) {
+  const result = await Photos.updateOne({ id }, { url: data });
+  console.log('updatePhoto results: \n', result);
+}
+
+// mongoose.set('debug', true);
+// getProductById(1);
+// getPhotosForProduct(4);
+// updateProduct(2);
+// updateRating(5, 5);
+// updatePhoto(2, 'www.google.com');
+// getAvgRatingsForProduct(4);
 module.exports = {
-  Product: mongoose.model('Product', ProductsSchema),
-  Ratings: mongoose.model('Ratings', RatingsSchema),
-  Photos: mongoose.model('Photos', PhotosSchema),
+  Product,
+  Ratings,
+  Photos,
 };
