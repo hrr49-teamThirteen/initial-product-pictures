@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 require('dotenv').config();
 const { exec } = require('child_process');
 const ratingsModel = require('../models/ratingsModel');
@@ -8,7 +7,6 @@ const photosModel = require('../models/photosModel');
 function initEmptyDb() {
   return new Promise((resolve, reject) => {
     exec(`psql -d fec -U postgres -f ${__dirname}/schemas/postgres_schema.sql`, (error, stdout, stderr) => {
-      console.log('init empty db ran', error, stderr,stdout);
       if (error) return reject(error);
       if (stderr) return reject(error);
       return resolve(`stdout: ${stdout}`);
@@ -19,45 +17,44 @@ function initEmptyDb() {
 function loadProductsCSV() {
   return new Promise((resolve, reject) => {
     exec(`psql -d fec -U postgres -c "\\COPY products(id, colorid, price, questions, title) FROM '${__dirname}/data/products.csv' DELIMITER ',' CSV HEADER;"`,
-    (error, stdout, stderr) => {
-      console.log('done loading products?', error, stdout, stderr,);
-      if (error) return reject(error);
-      if (stderr) return reject(error);
-      return resolve(`stdout: ${stdout}`);
-    });
+      (error, stdout, stderr) => {
+        if (error) return reject(error);
+        if (stderr) return reject(error);
+        return resolve(`stdout: ${stdout}`);
+      });
   });
 }
 
 function loadPotosCSV() {
   return new Promise((resolve, reject) => {
     exec(`psql -d fec -U postgres -c "\\COPY photos(id, product_id, photourl, colorid) FROM '${__dirname}/data/photos.csv' DELIMITER ','CSV HEADER;"`,
-    (error, stdout, stderr) => {
-      if (error) return reject(error);
-      if (stderr) return reject(error);
-      return resolve(`stdout: ${stdout}`);
-    });
+      (error, stdout, stderr) => {
+        if (error) return reject(error);
+        if (stderr) return reject(error);
+        return resolve(`stdout: ${stdout}`);
+      });
   });
 }
 
 function loadUsersCSV() {
   return new Promise((resolve, reject) => {
     exec(`psql -d fec -U postgres -c "\\COPY users(id, username) FROM '${__dirname}/data/users.csv' DELIMITER ','CSV HEADER;"`,
-    (error, stdout, stderr) => {
-      if (error) return reject(error);
-      if (stderr) return reject(error);
-      return resolve(`stdout: ${stdout}`);
-    });
+      (error, stdout, stderr) => {
+        if (error) return reject(error);
+        if (stderr) return reject(error);
+        return resolve(`stdout: ${stdout}`);
+      });
   });
 }
 
 function loadRatingsCSV() {
   return new Promise((resolve, reject) => {
     exec(`psql -d fec -U postgres -c "\\COPY ratings(id, user_id, product_id, rating_given) FROM '${__dirname}/data/ratings.csv' DELIMITER ','CSV HEADER;"`,
-    (error, stdout, stderr) => {
-      if (error) return reject(error);
-      if (stderr) return reject(error);
-      return resolve(`stdout: ${stdout}`);
-    });
+      (error, stdout, stderr) => {
+        if (error) return reject(error);
+        if (stderr) return reject(error);
+        return resolve(`stdout: ${stdout}`);
+      });
   });
 }
 
@@ -77,5 +74,3 @@ initEmptyDb()
   .catch((err) => {
     console.log(`${err ? err.message : 'error initemptydb'}`);
   });
-
-// console.log('Uncomment in postgres_seed.js to execute');

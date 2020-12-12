@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const { exec } = require('child_process');
 const productsModel = require('../models/productsModel');
 const photosModel = require('../models/photosModel');

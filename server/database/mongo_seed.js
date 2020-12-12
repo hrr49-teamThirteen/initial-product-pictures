@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+
 const faker = require('faker');
 const fs = require('fs');
 const { exec } = require('child_process');
