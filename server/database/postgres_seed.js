@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+require('dotenv').config();
 const { exec } = require('child_process');
 const ratingsModel = require('../models/ratingsModel');
 const productsModel = require('../models/productsModel');
@@ -6,7 +7,7 @@ const photosModel = require('../models/photosModel');
 
 function initEmptyDb() {
   return new Promise((resolve, reject) => {
-    exec('psql fec -f server/database/schemas/postgres_schema.sql', (error, stdout, stderr) => {
+    exec(`psql -d fec -U taylor -W -f server/database/schemas/postgres_schema.sql ; ${process.env.PG_PASSWORD}`, (error, stdout, stderr) => {
       if (error) return reject(error);
       if (stderr) return reject(error);
       return resolve(`stdout: ${stdout}`);
@@ -55,7 +56,6 @@ function loadUsersCSV() {
     });
   });
 }
-psql -d fec -U taylor -W -f server/database/schemas/postgres_schema.sql
 
 function loadRatingsCSV() {
   return new Promise((resolve, reject) => {
@@ -75,8 +75,8 @@ function loadRatingsCSV() {
 // SELECT setval('users_id_seq', max(id)) FROM users;
 // SELECT setval('ratings_id_seq', max(id)) FROM ratings;
 // SELECT setval('photos_id_seq', max(id)) FROM photos;
-initEmptyDb()
-  .then(() => loadProductsCSV())
+// initEmptyDb()
+loadProductsCSV()
   .then(() => loadPotosCSV())
   .then(() => loadUsersCSV())
   .then(() => loadRatingsCSV())
