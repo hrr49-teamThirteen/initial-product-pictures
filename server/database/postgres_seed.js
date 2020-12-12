@@ -7,7 +7,8 @@ const photosModel = require('../models/photosModel');
 
 function initEmptyDb() {
   return new Promise((resolve, reject) => {
-    exec(`psql -d fec -U taylor -W -f server/database/schemas/postgres_schema.sql ; ${process.env.PG_PASSWORD}`, (error, stdout, stderr) => {
+    exec(`psql -d fec -U postgres -f ${__dirname}/schemas/postgres_schema.sql`, (error, stdout, stderr) => {
+      console.log('init empty db ran', error, stderr,stdout);
       if (error) return reject(error);
       if (stderr) return reject(error);
       return resolve(`stdout: ${stdout}`);
@@ -17,11 +18,9 @@ function initEmptyDb() {
 
 function loadProductsCSV() {
   return new Promise((resolve, reject) => {
-    exec(`psql -d fec -c "
-    COPY products(id, colorid, price, questions, title)
-    FROM '${__dirname}/data/products.csv'
-    DELIMITER ','CSV HEADER;"`,
+    exec(`psql -d fec -U postgres -c "\\COPY products(id, colorid, price, questions, title) FROM '${__dirname}/data/products.csv' DELIMITER ',' CSV HEADER;"`,
     (error, stdout, stderr) => {
+      console.log('done loading products?', error, stdout, stderr,);
       if (error) return reject(error);
       if (stderr) return reject(error);
       return resolve(`stdout: ${stdout}`);
@@ -31,10 +30,7 @@ function loadProductsCSV() {
 
 function loadPotosCSV() {
   return new Promise((resolve, reject) => {
-    exec(`psql -d fec -c "
-    COPY photos(id, product_id, photourl, colorid)
-    FROM '${__dirname}/data/photos.csv'
-    DELIMITER ','CSV HEADER;"`,
+    exec(`psql -d fec -U postgres -c "\\COPY photos(id, product_id, photourl, colorid) FROM '${__dirname}/data/photos.csv' DELIMITER ','CSV HEADER;"`,
     (error, stdout, stderr) => {
       if (error) return reject(error);
       if (stderr) return reject(error);
@@ -45,10 +41,7 @@ function loadPotosCSV() {
 
 function loadUsersCSV() {
   return new Promise((resolve, reject) => {
-    exec(`psql -d fec -c "
-    COPY users(id, username)
-    FROM '${__dirname}/data/users.csv'
-    DELIMITER ','CSV HEADER;"`,
+    exec(`psql -d fec -U postgres -c "\\COPY users(id, username) FROM '${__dirname}/data/users.csv' DELIMITER ','CSV HEADER;"`,
     (error, stdout, stderr) => {
       if (error) return reject(error);
       if (stderr) return reject(error);
@@ -59,10 +52,7 @@ function loadUsersCSV() {
 
 function loadRatingsCSV() {
   return new Promise((resolve, reject) => {
-    exec(`psql -d fec -c "
-    COPY ratings(id, user_id, product_id, rating_given)
-    FROM '${__dirname}/data/ratings.csv'
-    DELIMITER ','CSV HEADER;"`,
+    exec(`psql -d fec -U postgres -c "\\COPY ratings(id, user_id, product_id, rating_given) FROM '${__dirname}/data/ratings.csv' DELIMITER ','CSV HEADER;"`,
     (error, stdout, stderr) => {
       if (error) return reject(error);
       if (stderr) return reject(error);
@@ -75,8 +65,8 @@ function loadRatingsCSV() {
 // SELECT setval('users_id_seq', max(id)) FROM users;
 // SELECT setval('ratings_id_seq', max(id)) FROM ratings;
 // SELECT setval('photos_id_seq', max(id)) FROM photos;
-// initEmptyDb()
-loadProductsCSV()
+initEmptyDb()
+  .then(() => loadProductsCSV())
   .then(() => loadPotosCSV())
   .then(() => loadUsersCSV())
   .then(() => loadRatingsCSV())
