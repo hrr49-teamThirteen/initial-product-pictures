@@ -29,25 +29,29 @@ CREATE TABLE "ratings" (
   "rating_given" int
 );
 
-ALTER TABLE "ratings"
-  ADD CONSTRAINT "fk_rated_product"
-  FOREIGN KEY ("product_id")
-  REFERENCES "products" ("id")
-  ON DELETE CASCADE;
+-- run the below commands from terminal after data is imported to speed up import process
 
-ALTER TABLE "ratings"
-  ADD CONSTRAINT "fk_user_id"
-  FOREIGN KEY ("user_id")
-  REFERENCES "users" ("id")
-  ON DELETE CASCADE;
+-- ALTER TABLE "ratings"
+--   ADD CONSTRAINT "fk_rated_product"
+--   FOREIGN KEY ("product_id")
+--   REFERENCES "products" ("id")
+--   ON DELETE CASCADE;
 
-ALTER TABLE "photos"
-  ADD CONSTRAINT "fk_product_id"
-  FOREIGN KEY ("product_id")
-  REFERENCES "products" ("id")
-  ON DELETE CASCADE;
+-- ALTER TABLE "ratings"
+--   ADD CONSTRAINT "fk_user_id"
+--   FOREIGN KEY ("user_id")
+--   REFERENCES "users" ("id")
+--   ON DELETE CASCADE;
 
-CREATE INDEX "photos_product_id_index" ON photos(product_id);
-CREATE INDEX "ratings_product_id_index" ON ratings(product_id);
+-- ALTER TABLE "photos"
+--   ADD CONSTRAINT "fk_product_id"
+--   FOREIGN KEY ("product_id")
+--   REFERENCES "products" ("id")
+--   ON DELETE CASCADE;
 
-
+-- CREATE INDEX "photos_product_id_index" ON photos(product_id);
+-- CREATE INDEX "ratings_product_id_index" ON ratings(product_id);
+-- SELECT setval('products_id_seq', max(id)) FROM products;
+-- SELECT setval('users_id_seq', max(id)) FROM users;
+-- SELECT setval('ratings_id_seq', max(id)) FROM ratings;
+-- SELECT setval('photos_id_seq', max(id)) FROM photos;

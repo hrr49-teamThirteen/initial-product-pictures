@@ -1,0 +1,1 @@
+scp -i /Users/taylor/hackreactor/sdc/initial-product-pictures/sdc_server.pem /Users/taylor/hackreactor/sdc/initial-product-pictures/server/database/data/products.csv ubuntu@ip-172-31-47-191.compute-1.amazonaws.com:home/ubuntu/initial-product-pictures/server/database/data

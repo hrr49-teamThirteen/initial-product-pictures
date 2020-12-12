@@ -55,6 +55,7 @@ function loadUsersCSV() {
     });
   });
 }
+psql -d fec -U taylor -W -f server/database/schemas/postgres_schema.sql
 
 function loadRatingsCSV() {
   return new Promise((resolve, reject) => {
