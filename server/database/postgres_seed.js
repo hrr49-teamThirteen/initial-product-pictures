@@ -7,7 +7,7 @@ const photosModel = require('../models/photosModel');
 
 function initEmptyDb() {
   return new Promise((resolve, reject) => {
-    exec(`psql -d fec -U taylor -W -f server/database/schemas/postgres_schema.sql ; ${process.env.PG_PASSWORD}`, (error, stdout, stderr) => {
+    exec('psql -d fec -U taylor -W -f server/database/schemas/postgres_schema.sql', (error, stdout, stderr) => {
       if (error) return reject(error);
       if (stderr) return reject(error);
       return resolve(`stdout: ${stdout}`);
@@ -89,3 +89,6 @@ loadProductsCSV()
   });
 
 // console.log('Uncomment in postgres_seed.js to execute');
+
+
+psql -d fec "COPY products(id, colorid, price, questions, title) FROM 'home/ubuntu/initial-product-pictures/server/database/data/products.csv' DELIMITER ','CSV HEADER

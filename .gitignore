@@ -30,3 +30,4 @@ config.js
 config.env
 sdc_server.pem
 .env
+sdc_pem2.pem

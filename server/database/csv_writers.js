@@ -5,8 +5,8 @@ const faker = require('faker');
 const NUM_PRODUCTS = 10000000;
 const NUM_PHOTOS = 30000000;
 
-const NUM_USERS = 40000000;
-const NUM_RATINGS = 50000000;
+const NUM_USERS = 5000;
+const NUM_RATINGS = 10000;
 
 function randomImageUrl() {
   const number = faker.random.number({ min: 1, max: 400 });
