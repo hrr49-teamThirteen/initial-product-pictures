@@ -13,8 +13,8 @@
     ]
   },
   "scripts": {
-    "server": "nodemon server/index.js",
-    "build": "webpack -w ",
+    "server": "node server/index.js",
+    "build": "webpack",
     "seed:mysql": "node server/database/seed.js",
     "seed:psql": "node server/database/postgres_seed.js",
     "seed:mongo": "node server/database/mongo_seed.js",
