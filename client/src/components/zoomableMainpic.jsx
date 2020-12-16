@@ -17,7 +17,6 @@ class ZoomableMainPic extends React.Component {
 
   render() {
     const { mainPhoto } = this.props;
-    console.log('main photo', mainPhoto);
     return (
       <div align='middle'>
         {/* {this.isMainDefined()} */}

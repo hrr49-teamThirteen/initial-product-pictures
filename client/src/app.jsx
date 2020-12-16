@@ -21,7 +21,7 @@ class App extends React.Component {
       photos: [],
       mainPhoto: undefined,
       quantity: 1,
-      mainProductId: 9999997,
+      mainProductId: 9999994,
       avgReviewScore: 0,
       product: undefined,
     };
@@ -74,17 +74,17 @@ class App extends React.Component {
 
   getAvgReview() {
     const { mainProductId } = this.state;
-    return axios.get(`/api/products/avgrating/id=${mainProductId}`);
+    return axios.get(`/api/initial/products/avgrating/id=${mainProductId}`);
   }
 
   getPhotos() {
     const { mainProductId } = this.state;
-    return axios.get(`/api/photos/forproductid/id=${mainProductId}`);
+    return axios.get(`/api/initial/photos/forproductid/id=${mainProductId}`);
   }
 
   getProducts() {
     const { mainProductId } = this.state;
-    return axios.get(`/api/products/id=${mainProductId}`);
+    return axios.get(`/api/initial/products/id=${mainProductId}`);
   }
 
   setPhotoColor(photoColor) {
