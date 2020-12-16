@@ -21,7 +21,7 @@ class App extends React.Component {
       photos: [],
       mainPhoto: undefined,
       quantity: 1,
-      mainProductId: 9999997,
+      mainProductId: 9999994,
       avgReviewScore: 0,
       product: undefined,
     };
