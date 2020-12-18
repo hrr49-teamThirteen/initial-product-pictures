@@ -1,4 +1,4 @@
-const {React} = window;
+import React from 'react';
 
 class QuantitySelector extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
-const {React} = window;
+import React from 'react';
 
-import Styled from '../styledComponents/styles.jsx';
+import Styled from '../styledComponents/styles';
 
 class morePics extends React.Component {
   constructor(props) {

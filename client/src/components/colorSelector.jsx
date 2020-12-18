@@ -1,5 +1,5 @@
-const {React} = window;
-import Style from '../styledComponents/styles.jsx';
+import React from 'react';
+import Style from '../styledComponents/styles';
 
 class ColorSeclector extends React.Component {
   constructor(props) {
@@ -7,20 +7,25 @@ class ColorSeclector extends React.Component {
     this.state = {
 
     };
-  }
-  setPhotoColorRed() {
-    this.props.setColor('red');
-  }
-  setPhotoColorBlack() {
-    this.props.setColor('black');
+    this.setPhotoColorBlack = this.setPhotoColorBlack.bind(this);
+    this.setPhotoColorRed = this.setPhotoColorRed.bind(this);
   }
 
+  setPhotoColorRed() {
+    const { setColor } = this.props;
+    setColor('red');
+  }
+
+  setPhotoColorBlack() {
+    const { setColor } = this.props;
+    setColor('black');
+  }
 
   render() {
     return (
-      <div align='right'>
-        <Style.ColorSelectB onClick={this.setPhotoColorBlack.bind(this)}>X</Style.ColorSelectB>
-        <Style.ColorSelectR onClick={this.setPhotoColorRed.bind(this)}>X</Style.ColorSelectR>
+      <div align="right">
+        <Style.ColorSelectB onClick={this.setPhotoColorBlack}>X</Style.ColorSelectB>
+        <Style.ColorSelectR onClick={this.setPhotoColorRed}>X</Style.ColorSelectR>
       </div>
     );
   }

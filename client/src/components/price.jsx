@@ -1,30 +1,11 @@
-const { React } = window;
+import React from 'react';
 
-class Price extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  // priceDefined() {
-  //   if (this.props.price[0] !== undefined) {
-  //     return (
-  //       <a>{this.props.price[0].price}</a>
-
-  //     );
-  //   }
-  // }
-  render() {
-    const { price } = this.props;
-
-    return (
-      <div align='right'>
-        {/* ${this.priceDefined()}.00 */}
-        <a>price: {price}</a>
-      </div>
-
-    );
-  }
+function Price({ price }) {
+  return (
+    <div style={{ align: 'right' }}>
+      {/* ${this.priceDefined()}.00 */}
+      <a> price: {Math.round(price)} </a>
+    </div>
+  );
 }
-
-
 export default Price;

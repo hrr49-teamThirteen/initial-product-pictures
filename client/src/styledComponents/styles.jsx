@@ -1,4 +1,4 @@
-const {styled} = window;
+import styled from 'styled-components';
 
 export default {
   MainDiv:
@@ -39,7 +39,7 @@ export default {
     background-color: red;
     text: red;
     `,
-  RightSideStuff:
+  RightPanel:
   styled.div`
   display: flex;
   height: 200px;
@@ -47,7 +47,7 @@ export default {
   justify-content: space-between;
   font-family: 'Helvetica';
   `,
-  HeaderStuff:
+  Header:
   styled.div`
   background-color: rgb(204, 0, 0);
   height: 60px;
@@ -55,5 +55,11 @@ export default {
   margin-left: -25px;
   width: calc(100% + 33px);
 
-  `
+  `,
+  PictureCarouselStyle:
+  styled.img`
+    height:"110px";
+    width:"110px";
+  `,
+
 };

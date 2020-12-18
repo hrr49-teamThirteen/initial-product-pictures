@@ -1,5 +1,5 @@
-import App from './app.jsx';
-const {React} = window;
-const {ReactDOM} = window;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app';
 
 ReactDOM.render(<App />, document.getElementById('app'));

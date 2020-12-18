@@ -1,20 +1,10 @@
-const {React} = window;
-import StyledComponents from '../styledComponents/styles.jsx';
+import React from 'react';
+import StyledComponents from '../styledComponents/styles';
 
 class ReviewScore extends React.Component {
   constructor(props) {
     super(props);
   }
-
-  // arePropsDefined() {
-  //   if (this.props.reviewScore[0] !== undefined) {
-  //     return (
-  //       <StyledComponents.ReviewScore>
-  //         {this.props.reviewScore[0].reviewscore} || {this.props.reviewScore[0].questions} Questions
-  //       </StyledComponents.ReviewScore>
-  //     );
-  //   }
-  // }
 
   render() {
     const { reviewScore} = this.props;

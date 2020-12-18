@@ -1,7 +1,6 @@
-import PictureCarouselEntry from './pictureCarouselEntry.jsx';
-import Styled from '../styledComponents/styles.jsx';
-
-const { React } = window;
+import React from 'react';
+import PictureCarouselEntry from './pictureCarouselEntry';
+import Styled from '../styledComponents/styles';
 
 class PictureCarousel extends React.Component {
   constructor(props) {
@@ -16,25 +15,9 @@ class PictureCarousel extends React.Component {
     console.log(photos);
     return (
       <Styled.PictureLeft>
-        {photos.map((p, i) => (
-          <PictureCarouselEntry key={i} setMainPhoto={setMainPhoto} photo={p} />
+        {photos.map((p) => (
+          <PictureCarouselEntry key={p} setMainPhoto={setMainPhoto} photo={p} />
         ))}
-
-        {/* //
-        {' '}
-        <PictureCarouselEntry setMainPhoto={this.props.setMainPhoto} photo={this.props.photos[0]} />
-        //
-        {' '}
-        <PictureCarouselEntry setMainPhoto={this.props.setMainPhoto} photo={this.props.photos[1]} />
-        //
-        {' '}
-        <PictureCarouselEntry setMainPhoto={this.props.setMainPhoto} photo={this.props.photos[2]} />
-        //
-        {' '}
-        <PictureCarouselEntry setMainPhoto={this.props.setMainPhoto} photo={this.props.photos[3]} />
-        //
-        {' '}
-        <PictureCarouselEntry setMainPhoto={this.props.setMainPhoto} photo={this.props.photos[4]} /> */}
       </Styled.PictureLeft>
     );
   }

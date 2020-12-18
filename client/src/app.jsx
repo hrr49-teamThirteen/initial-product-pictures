@@ -1,18 +1,15 @@
-import $ from 'jquery';
-import Style from './styledComponents/styles.jsx';
-import Title from './components/title.jsx';
-import Price from './components/price.jsx';
-import ReviewScore from './components/reviewScore.jsx';
-import Questions from './components/questions.jsx';
-import QuantitySelector from './components/quantitySelector.jsx';
-import ColorSelector from './components/colorSelector.jsx';
-import PictureCarousel from './components/pictureCarousel.jsx';
-import PictureCarouselEntry from './components/pictureCarouselEntry.jsx';
-import ZoomableMainPic from './components/zoomableMainpic.jsx';
-import axios from 'axios'
-
-const { React } = window;
-const { ReactDOM } = window;
+import React from 'react';
+import axios from 'axios';
+import Style from './styledComponents/styles';
+import Title from './components/title';
+import Price from './components/price';
+import ReviewScore from './components/reviewScore';
+import Questions from './components/questions';
+import QuantitySelector from './components/quantitySelector';
+import ColorSelector from './components/colorSelector';
+import PictureCarousel from './components/pictureCarousel';
+import PictureCarouselEntry from './components/pictureCarouselEntry';
+import ZoomableMainPic from './components/zoomableMainpic';
 
 class App extends React.Component {
   constructor(props) {
@@ -109,7 +106,7 @@ class App extends React.Component {
     } = this.state;
     return (
       <div>
-        <Style.HeaderStuff />
+        <Style.Header />
         <Title title={product ? product.title : ''} />
         <Style.MainDiv>
           <div>
@@ -118,17 +115,15 @@ class App extends React.Component {
           <div>
             { mainPhoto ? <ZoomableMainPic mainPhoto={mainPhoto} /> : null}
           </div>
-          <Style.RightSideStuff>
+          <Style.RightPanel>
             <Price price={product ? product.price : 0} />
             <ReviewScore reviewScore={avgReviewScore} />
             <QuantitySelector setQuantity={this.setQuantity} />
-          </Style.RightSideStuff>
+          </Style.RightPanel>
         </Style.MainDiv>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            productId:
-            <input type="text" value={mainProductId} onChange={this.handleIdChange}/>
-          </label>
+          productId:
+          <input type="text" value={mainProductId} onChange={this.handleIdChange}/>
           <input type="submit" value="Submit" />
         </form>
       </div>
