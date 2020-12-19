@@ -1,4 +1,12 @@
+const redis = require('redis');
 const photosModel = require('../models/photosModel');
+
+const REDIS_PORT = 6379;
+const redisClient = redis.createClient(REDIS_PORT);
+
+redisClient.on('error', (error) => {
+  console.error(error);
+});
 
 async function getAllPhotos(req, res) {
   try {
@@ -39,6 +47,8 @@ async function getPhotoById(req, res) {
 async function getPhotosForProduct(req, res) {
   try {
     const results = await photosModel.getPhotosForProduct(req.params.id);
+    // cache the data in redit for 20 minutes
+    redisClient.setex(req.params.id, 1200, JSON.stringify(results.rows));
     res.status(200).json(results.rows);
   } catch (err) {
     res.status(500).send(err.message);
